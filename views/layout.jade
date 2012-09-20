@@ -1,0 +1,21 @@
+!!! 5
+html(lang='en')  
+  head  
+    title
+    script(src='http://code.jquery.com/jquery-1.8.1.js')
+    script(src='/bootstrap/js/bootstrap.js')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/common.css')
+  body
+    header.container
+      div.trn-app-header
+        h2 Header
+    div.container-fluid
+      div.row-fluid
+        div.span2
+          div.trn-container
+            <!--Sidebar content-->
+            h1 Sidebar 		
+        div.span10
+          <!--Body content-->
+          block mainContent
