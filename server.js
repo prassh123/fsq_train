@@ -1,22 +1,26 @@
 var http = require('http');
 var express = require("express");
 var routes = require('./routes');
-var app    = express(); 
 
+var app = express.createServer();
+var port = process.env.PORT || 3000;
 //set path to the views (template) directory
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.set("view options",{ layout: 'layout' });
+
+app.configure(function(){
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'jade');
+	app.set("view options",{ layout: 'layout' });
 //set path to static files
-app.use(express.static(__dirname + '/public'));
-
+	
+	app.use(express.bodyParser());
+	app.use(app.router);
+	app.use(express.static(__dirname + '/public'));
+});
 app.get('/', routes.index);
-
-
 app.get('/departures/*', routes.getNextDeparturesByStopName);
 app.get('/test', function(req, res){
   res.render('index.jade', {title: 'Prashanth Raghavan'}); 
 });
 
-app.listen(3000);
+app.listen(port);
 console.log ('Listening on port 3000');

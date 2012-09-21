@@ -14,8 +14,16 @@ html(lang='en')
       div.row-fluid
         div.span2
           div.trn-container
-            <!--Sidebar content-->
             h1 Sidebar 		
         div.span10
-          <!--Body content-->
-          block mainContent
+          div.trn-chart
+            table.table.table-condensed.table-hover
+              thead
+                tr
+                  th Train to
+                  th Arriving in (mins)        
+              tbody 
+                each item in data
+                  tr 
+                    td #{item.name} 
+                    td #{item.depTimes}
