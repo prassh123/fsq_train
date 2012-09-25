@@ -5,6 +5,8 @@ var http = require('http');
 var libxmljs = require("libxmljs");
 var url =  require('url');
 
+var stopCodeMap = require('./utils');
+
 
 exports.index = function(req, res){
   console.log ('in exports index');
@@ -27,11 +29,18 @@ exports.getNextDeparturesByStopName = function(req, res) {
 	}
    
     console.log ('Stop Name' + JSON.stringify(stopName));	
+    
+    var stopCode = getStationCode(stopName);
+    
+
 	var xmlResp = '';
 	try {
+    var urlstr = '/Transit2.0/GetNextDeparturesByStopName.aspx?token=1ebf976b-01bb-46d5-a8df-3978ee55d235&agencyName=BART&stopName=' + encodeURIComponent(stopName);
+
+      
 	var options = {
 	  host: "services.my511.org",  
-	  path: '/Transit2.0/GetNextDeparturesByStopName.aspx?token=1ebf976b-01bb-46d5-a8df-3978ee55d235&agencyName=BART&stopName=' + stopName,
+	  path: urlstr,
 	  method: 'GET'
 	};
 	console.log ('about to make a http request');
@@ -47,6 +56,8 @@ exports.getNextDeparturesByStopName = function(req, res) {
 		processResp(xmlResp);
 	  });  	
 	}).end();
+
+
 	
 	processResp = function (xmlResp) {
 		//console.log ('In func: processResp ' + xmlResp);
