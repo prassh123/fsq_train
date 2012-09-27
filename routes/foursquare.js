@@ -44,6 +44,35 @@ exports.foursquarecallbackpush = function(req, res) {
     var orderDetails = "<h3>Venue: " + venue +  "Customer email" + custEmail ;
     //orders.push({customer: {email: custEmail, phone: custPhoneNumber}, order: {item: orderItem, placed: new Date(), delivered: null}});
     //sendsms_fn('+14083291685',custPhoneNumber,orderItem+" has been ordered!");
+
+
+    try {
+      var urlstr = '/v2/checkins/'+checkin_id+'/reply';
+	  var options = {
+	    host: "api.foursquare.com",  
+	    path: urlstr,
+	    method: 'POST'
+	  };
+      var post_data = querystring.stringify({
+          'text' : 'Hats Off from Prash!'
+      });
+	  console.log ('about to make a foursquare http POST request');
+	  var post_req = http.request(options, function(res) {
+	                       console.log('STATUS: ' + res.statusCode);
+	                       //console.log('HEADERS: ' + JSON.stringify(res.headers));
+	                       res.setEncoding('utf8');
+	                       res.on('data', function (chunk) {
+		                        xmlResp += chunk;
+	                       });
+	                       res.on('end', function(){
+		                      console.log ('In end response' + xmlResp );
+	                       });  	
+	                 }).end();
+
+      post_req.write(post_data);
+    } catch(err) {
+        console.log(err);   
+    }
     res.send ('Order via FourSquare Successful! ' + orderDetails);
 };
 
