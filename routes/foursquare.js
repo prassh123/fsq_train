@@ -78,7 +78,7 @@ exports.foursquarecallbackpush = function(req, res) {
 	                       res.on('end', function(){
 		                      console.log ('In end response' + resp );
 	                       });  	
-	                 }).end();
+	                 });
 
       post_req.write(post_data);
       post_req.end();
