@@ -1,6 +1,6 @@
 
 var querystring = require('querystring');
-var http = require('http');
+var https = require('https');
 
 exports.foursquareredirect = function (req, res) {
   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=DX3VVQM0L0YQ2OHTV1N5GNC5QTXCQFXDI0131W3WTIV02JVU&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
@@ -61,7 +61,7 @@ exports.foursquarecallbackpush = function(req, res) {
       });
       var resp = '';
 	  console.log ('about to make a foursquare http POST request');
-	  var post_req = http.request(options, function(res) {
+	  var post_req = https.request(options, function(res) {
 	                       console.log('STATUS: ' + res.statusCode);
 	                       //console.log('HEADERS: ' + JSON.stringify(res.headers));
 	                       res.setEncoding('utf8');
