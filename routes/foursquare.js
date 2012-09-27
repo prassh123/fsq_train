@@ -59,21 +59,23 @@ exports.foursquarecallbackpush = function(req, res) {
       var post_data = querystring.stringify({
           'text' : 'Hats Off from Prash!'
       });
+      var resp = '';
 	  console.log ('about to make a foursquare http POST request');
 	  var post_req = http.request(options, function(res) {
 	                       console.log('STATUS: ' + res.statusCode);
 	                       //console.log('HEADERS: ' + JSON.stringify(res.headers));
 	                       res.setEncoding('utf8');
 	                       res.on('data', function (chunk) {
-		                        xmlResp += chunk;
+		                        resp += chunk;
 	                       });
 	                       res.on('end', function(){
-		                      console.log ('In end response' + xmlResp );
+		                      console.log ('In end response' + resp );
 	                       });  	
 	                 }).end();
 
       post_req.write(post_data);
       post_req.end();
+
     } catch(err) {
         console.log(err);   
     }
