@@ -49,16 +49,23 @@ exports.foursquarecallbackpush = function(req, res) {
     //sendsms_fn('+14083291685',custPhoneNumber,orderItem+" has been ordered!");
 
 
+
     try {
+
+      var post_data = querystring.stringify({
+          'text' : 'Hats Off from Prash!'
+      }); 
+       
       var urlstr = '/v2/checkins/'+checkin_id+'/reply';
 	  var options = {
 	    host: "api.foursquare.com",  
 	    path: urlstr,
-	    method: 'POST'
+	    method: 'POST',
+        headers:  {
+                   'Content-Length': post_data.length
+               }
 	  };
-      var post_data = querystring.stringify({
-          'text' : 'Hats Off from Prash!'
-      });
+     
       var resp = '';
 	  console.log ('about to make a foursquare http POST request');
 	  var post_req = https.request(options, function(res) {
