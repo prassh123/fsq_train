@@ -1,4 +1,6 @@
 
+var querystring = require('querystring');
+
 exports.foursquareredirect = function (req, res) {
   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=DX3VVQM0L0YQ2OHTV1N5GNC5QTXCQFXDI0131W3WTIV02JVU&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
 };
