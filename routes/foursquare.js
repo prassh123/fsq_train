@@ -9,7 +9,7 @@ exports.foursquarecallback = function (req, res) {
   //accessToken =  window.location.hash.substring(1); 
   //console.log ('access token ' + accessToken);
   //res.send ("Foursquare callback "  + accessToken );
-  res.render ('fscallback',{title: 'callback'});
+  res.render ('fscallback',{layout:false, title: 'callback'});
   return;
 };
 
