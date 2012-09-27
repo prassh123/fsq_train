@@ -25,6 +25,7 @@ exports.foursquarecallbackpush = function(req, res) {
     console.log (req.headers);
     console.log ('Foursquare push notification post body:'+JSON.stringify(req.body)); 
     var checkin = JSON.parse(req.body.checkin);
+    var checkin_id = checkin.id;
     var venue = checkin.venue.name;
     console.log ('Checkin location: ' + venue);
 
