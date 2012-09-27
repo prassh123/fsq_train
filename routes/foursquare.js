@@ -40,7 +40,7 @@ exports.foursquarecallbackpush = function(req, res) {
     console.log ('Client email: ' + custEmail);
 
     var orderDetails = "<h3>Venue: " + venue +  "Customer email" + custEmail ;
-    orders.push({customer: {email: custEmail, phone: custPhoneNumber}, order: {item: orderItem, placed: new Date(), delivered: null}});
+    //orders.push({customer: {email: custEmail, phone: custPhoneNumber}, order: {item: orderItem, placed: new Date(), delivered: null}});
     //sendsms_fn('+14083291685',custPhoneNumber,orderItem+" has been ordered!");
     res.send ('Order via FourSquare Successful! ' + orderDetails);
 };
