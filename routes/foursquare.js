@@ -1,6 +1,7 @@
 
 var querystring = require('querystring');
 var https = require('https');
+var fsq_access_token = '';
 
 exports.foursquareredirect = function (req, res) {
   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=DX3VVQM0L0YQ2OHTV1N5GNC5QTXCQFXDI0131W3WTIV02JVU&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
@@ -51,7 +52,7 @@ exports.foursquarecallbackpush = function(req, res) {
 
 
     try {
-
+      console.log ('using access token ' + fsq_access_token);
       var post_data = querystring.stringify({
           'text' : 'Hats Off from Prash!',
           'oauth_token' : fsq_access_token
