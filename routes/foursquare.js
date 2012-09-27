@@ -58,7 +58,7 @@ exports.foursquarecallbackpush = function(req, res) {
           'oauth_token' : fsq_access_token
       }); 
        
-      var urlstr = '/v2/checkins/'+checkin_id+'/reply';
+      var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token;
 	  var options = {
 	    host: "api.foursquare.com",  
 	    path: urlstr,
