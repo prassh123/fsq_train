@@ -53,7 +53,8 @@ exports.foursquarecallbackpush = function(req, res) {
     try {
 
       var post_data = querystring.stringify({
-          'text' : 'Hats Off from Prash!'
+          'text' : 'Hats Off from Prash!',
+          'oauth_token' : fsq_access_token
       }); 
        
       var urlstr = '/v2/checkins/'+checkin_id+'/reply';
