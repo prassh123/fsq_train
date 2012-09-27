@@ -1,7 +1,7 @@
 var http = require('http');
 var express = require("express");
 var routes = require('./routes');
-
+var foursquare = require('./routes/foursquare');
 var app = express.createServer();
 var port = process.env.PORT || 3000;
 //set path to the views (template) directory
@@ -17,6 +17,12 @@ app.configure(function(){
 	app.use(express.static(__dirname + '/public'));
 });
 app.get('/', routes.index);
+
+app.get('/foursquareredirect', foursquare.foursquareredirect);
+app.get('/foursquarecallback', foursquare.foursquarecallback);
+app.get('/storefoursquaretoken', foursquare.foursquareaccesstoken);
+app.post('/foursquarecallbackpush', foursquare.foursquarecallbackpush);
+
 app.get('/departures/*', routes.getNextDeparturesByStopName);
 app.get('/test', function(req, res){
   res.render('index.jade', {title: 'Prashanth Raghavan'}); 

@@ -1,0 +1,5 @@
+script
+  accessToken = window.location.hash;
+  pos = accessToken.indexOf('=')+1;
+  accessToken = window.location.hash.substring(pos);
+  window.location = "/storefoursquaretoken?access_token="+ accessToken;

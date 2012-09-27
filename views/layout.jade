@@ -16,14 +16,18 @@ html(lang='en')
           div.trn-container
             h1 Sidebar 		
         div.span10
-          div.trn-chart
-            table.table.table-condensed.table-hover
-              thead
-                tr
-                  th Train to
-                  th Arriving in (mins)        
-              tbody 
-                each item in data
-                  tr 
-                    td #{item.name} 
-                    td #{item.depTimes}
+          - if (typeof (data) != 'undefined')
+              div.trn-chart
+                table.table.table-condensed.table-hover
+                  thead
+                    tr
+                      th Train to
+                      th Arriving in (mins)        
+                  tbody 
+                    each item in data
+                      tr 
+                        td #{item.name} 
+                        td #{item.depTimes}
+          - else
+              h3 
+                a(href="/foursquareredirect") Connect with Foursquare
