@@ -1,6 +1,6 @@
 
 exports.foursquareredirect = function (req, res) {
-  res.redirect('https://foursquare.com/oauth2/authenticate?client_id=SML4PCPNMUJ4JLKP3CIIBO31YDS5EGUYSQ2GWJITKQLWDUNV&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
+  res.redirect('https://foursquare.com/oauth2/authenticate?client_id=DX3VVQM0L0YQ2OHTV1N5GNC5QTXCQFXDI0131W3WTIV02JVU&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
 };
 
 
@@ -28,18 +28,18 @@ exports.foursquarecallbackpush = function(req, res) {
     var venue = checkin.venue.name;
     console.log ('Checkin location: ' + venue);
 
-    var orderItem = checkin.shout;
-    console.log ('Ordered item: ' + orderItem);
+   // var orderItem = checkin.shout;
+   // console.log ('Ordered item: ' + orderItem);
    
     var user = JSON.parse(req.body.user);
    
-    var custPhoneNumber = user.contact.phone;
-    console.log ('Client phone: ' + custPhoneNumber);
+   // var custPhoneNumber = user.contact.phone;
+   // console.log ('Client phone: ' + custPhoneNumber);
 
     var custEmail = user.contact.email;
     console.log ('Client email: ' + custEmail);
 
-    var orderDetails = "<h3>Venue: " + venue + "<br/>" + "Ordered Item " + orderItem + "<br/>" + "Customer phone" + custPhoneNumber + "<br/>" + "Customer email" + custEmail ;
+    var orderDetails = "<h3>Venue: " + venue +  "Customer email" + custEmail ;
     orders.push({customer: {email: custEmail, phone: custPhoneNumber}, order: {item: orderItem, placed: new Date(), delivered: null}});
     //sendsms_fn('+14083291685',custPhoneNumber,orderItem+" has been ordered!");
     res.send ('Order via FourSquare Successful! ' + orderDetails);
