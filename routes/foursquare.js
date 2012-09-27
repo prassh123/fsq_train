@@ -28,6 +28,7 @@ exports.foursquarecallbackpush = function(req, res) {
     var checkin_id = checkin.id;
     var venue = checkin.venue.name;
     console.log ('Checkin location: ' + venue);
+     console.log ('Checkin ID: ' + checkin_id);
 
    // var orderItem = checkin.shout;
    // console.log ('Ordered item: ' + orderItem);
