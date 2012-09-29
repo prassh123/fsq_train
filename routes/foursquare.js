@@ -58,7 +58,8 @@ exports.foursquarecallbackpush = function(req, res) {
       }); 
        */
 
-      var post_data = "text=Hi from Prash!"; 
+      var post_data = querystring.stringify({"text":"Hi from Prash!"}); 
+
       var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token+'&v=20120928';
 	  var options = {
 	    host: "api.foursquare.com",  
