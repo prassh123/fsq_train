@@ -74,7 +74,7 @@ exports.foursquarecallbackpush = function(req, res) {
 	  var post_req = https.request(options, function(res) {
 	                       console.log('STATUS: ' + res.statusCode);
 	                       //console.log('HEADERS: ' + JSON.stringify(res.headers));
-	                       res.setEncoding('utf8');
+	                       //res.setEncoding('utf8');
 	                       res.on('data', function (chunk) {
 		                        resp += chunk;
 	                       });
