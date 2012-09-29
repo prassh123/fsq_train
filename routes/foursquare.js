@@ -53,11 +53,12 @@ exports.foursquarecallbackpush = function(req, res) {
 
     try {
       console.log ('using access token ' + fsq_access_token);
-      var post_data = querystring.stringify({
+      /*var post_data = querystring.stringify({
           'text' : 'Hats Off from Prash!',
-          'oauth_token' : fsq_access_token
       }); 
-       
+       */
+
+      var post_data = "text=Hi from Prash!"; 
       var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token;
 	  var options = {
 	    host: "api.foursquare.com",  
