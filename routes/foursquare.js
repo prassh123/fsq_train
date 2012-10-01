@@ -46,7 +46,7 @@ exports.foursquarecallbackpush = function(req, res) {
 
       var post_data = querystring.stringify(
           {
-            "text":"Hi from Prash!",
+            "text":"Upcoming BART trains. Please click here.",
             "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/" + stopName 
           }
       ); 

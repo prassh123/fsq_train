@@ -16,7 +16,8 @@ html(lang='en')
             <!-- Sidebar --> 		
         div.span10
           header.container
-            span Station: Concord
+          - if (typeof (stopname) != 'undefined')
+              span Station: #{stopname} 
           - if (typeof (data) != 'undefined')
               div.trn-chart
                 table.table.table-condensed.table-hover

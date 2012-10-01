@@ -19,7 +19,7 @@ exports.getNextDeparturesByStopName = function(req, res) {
 	
 	var urlparts = url.parse (req.url);
 	console.log ('parts' + JSON.stringify(urlparts));
-	var stopName = '';
+	stopName = '';
 	
 	if (urlparts.pathname != null) {
 		var partsArr =  urlparts.pathname.split("/");
@@ -69,7 +69,7 @@ exports.getNextDeparturesByStopName = function(req, res) {
 		res.setHeader("Content-Type", "text/html");
 		var xmlDoc = libxmljs.parseXmlString(xmlResp);
 		routes = xmlDoc.find("//Route");
-       
+        
 		objArr = [];
 		for (var i=0; i<routes.length; i++) {
 			stationObj = new Object();
@@ -88,7 +88,8 @@ exports.getNextDeparturesByStopName = function(req, res) {
 			objArr.push(stationObj);
 		}		
 		console.log (objArr);
-		res.render('index', {data: objArr});	
+		
+		res.render('index', {stopname: stopName, data: objArr});	
 		res.end();
 	}
 } catch (err) {
