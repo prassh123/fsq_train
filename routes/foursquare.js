@@ -170,6 +170,12 @@ getBestLocation = function(venue) {
         console.log ('returning Glen Park (SF)');
         return "Glen Park (SF)";
     }
+
+    else if (venue.indexOf("South Hayward BART") >= 0) {
+        console.log ('returning South Hayward');
+        return "South Hayward";
+    }
+
     else if (venue.indexOf("Hayward BART") >= 0) {
         console.log ('returning Hayward');
         return "Hayward";
@@ -238,10 +244,7 @@ getBestLocation = function(venue) {
         console.log ('returning San Leandro');
         return "San Leandro";
     }
-    else if (venue.indexOf("South Hayward BART") >= 0) {
-        console.log ('returning South Hayward');
-        return "South Hayward";
-    }
+    
     else if (venue.indexOf("South San Francisco BART") >= 0) {
         console.log ('returning South San Francisco');
         return "South San Francisco";
