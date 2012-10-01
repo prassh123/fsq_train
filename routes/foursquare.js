@@ -32,7 +32,7 @@ exports.foursquarecallbackpush = function(req, res) {
     var checkin_id = checkin.id;
     var venue = checkin.venue.name;
     console.log ('Checkin location: ' + venue);
-     console.log ('Checkin ID: ' + checkin_id);
+    console.log ('Checkin ID: ' + checkin_id);
 
    // var orderItem = checkin.shout;
    // console.log ('Ordered item: ' + orderItem);
@@ -91,6 +91,6 @@ exports.foursquarecallbackpush = function(req, res) {
     } catch(err) {
         console.log(err);   
     }
-    res.send ('Order via FourSquare Successful! ' + orderDetails);
+    //res.send ('Order via FourSquare Successful! ' + orderDetails);
 };
 
