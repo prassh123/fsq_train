@@ -1,3 +1,9 @@
+header span{
+	color: gray;
+    font-family: verdana;
+    font-weight: bold;
+}
+
 .trn-app-header {
   background-color: lightgreen;	
 }

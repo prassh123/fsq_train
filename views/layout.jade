@@ -8,13 +8,15 @@ html(lang='en')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/css/common.css')
     link(rel='stylesheet', href="/bootstrap/css/bootstrap-responsive.css")
-  body  
+  body
     div.container-fluid
       div.row-fluid
         div.span2
           div.trn-container
             <!-- Sidebar --> 		
         div.span10
+          header.container
+            span Station: Concord
           - if (typeof (data) != 'undefined')
               div.trn-chart
                 table.table.table-condensed.table-hover
