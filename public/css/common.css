@@ -7,5 +7,23 @@
 }
 
 .trn-chart{
-	width: 750px;
+	width: 575px;
+}
+
+.trn-chart thead th {
+	width: 5px;
+}
+
+.trn-chart tbody td {
+	font-size: 18px;
+	color: green;
+}
+
+.trn-chart tbody td.deptime {
+	width: 15px;
+	border: 1px dotted;
+}
+
+tr td.deptime:first-child {
+    background-color: 'yellow';
 }

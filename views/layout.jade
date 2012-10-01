@@ -2,10 +2,12 @@
 html(lang='en')  
   head  
     title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     script(src='http://code.jquery.com/jquery-1.8.1.js')
     script(src='/bootstrap/js/bootstrap.js')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/css/common.css')
+    link(rel='stylesheet', href="/bootstrap/css/bootstrap-responsive.css")
   body
     header.container
       div.trn-app-header
@@ -14,7 +16,7 @@ html(lang='en')
       div.row-fluid
         div.span2
           div.trn-container
-            h1 Sidebar 		
+            <!-- Sidebar --> 		
         div.span10
           - if (typeof (data) != 'undefined')
               div.trn-chart
@@ -26,8 +28,9 @@ html(lang='en')
                   tbody 
                     each item in data
                       tr 
-                        td #{item.name} 
-                        td #{item.depTimes}
+                        td #{item.name}
+                        each depTime in item.depTimes     
+                          td.deptime #{depTime}
           - else
               h3 
                 a(href="/foursquareredirect") Connect with Foursquare
