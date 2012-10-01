@@ -90,4 +90,8 @@ getBestLocation = function(venue) {
         console.log ('returning fremont');
         return "Fremont";
     }
+    else if (venue.indexOf("Concord BART") >= 0) {
+        console.log ('returning Concord');
+        return "Concord";
+    }
 }
