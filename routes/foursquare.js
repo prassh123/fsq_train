@@ -58,7 +58,12 @@ exports.foursquarecallbackpush = function(req, res) {
       }); 
        */
 
-      var post_data = querystring.stringify({"text":"Hi from Prash!"}); 
+      var post_data = querystring.stringify(
+          {
+            "text":"Hi from Prash!",
+            "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/Concord" 
+          }
+      ); 
 
       var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token+'&v=20120928';
 	  var options = {
@@ -92,5 +97,6 @@ exports.foursquarecallbackpush = function(req, res) {
         console.log(err);   
     }
     //res.send ('Order via FourSquare Successful! ' + orderDetails);
+    res.end();
 };
 
