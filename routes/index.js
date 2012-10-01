@@ -88,8 +88,8 @@ exports.getNextDeparturesByStopName = function(req, res) {
 			objArr.push(stationObj);
 		}		
 		console.log (objArr);
-		
-		res.render('index', {stopname: stopName, data: objArr});	
+
+		res.render('index', {stopname: decodeURIComponent(stopName), data: objArr});	
 		res.end();
 	}
 } catch (err) {
