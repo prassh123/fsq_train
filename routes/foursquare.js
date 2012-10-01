@@ -66,7 +66,7 @@ exports.foursquarecallbackpush = function(req, res) {
 	    path: urlstr,
 	    method: 'POST',
         headers:  {
-                   'Content-Type': 'application/json',
+                   'Content-Type': 'application/x-www-form-urlencoded',
                    'Content-Length': post_data.length
                }
 	  };
