@@ -21,10 +21,10 @@ exports.getNextDeparturesByStopName = function(req, res) {
 	console.log ('parts' + JSON.stringify(urlparts));
 	var stopName = '';
 	
-	if (urlparts.path != null) {
-		var partsArr =  urlparts.path.split("/");
-		if (partsArr[2] != null) {
-			stopName = partsArr[2];
+	if (urlparts.pathname != null) {
+		var partsArr =  urlparts.pathname.split("/");
+		if (partsArr[3] != null) {
+			stopName = partsArr[3];
 		}
 		//console.log (partsArr[4]);
 		// Append anything after partsArr[3] to the stopName string
