@@ -86,7 +86,7 @@ exports.foursquarecallbackpush = function(req, res) {
 };
 
 getBestLocation = function(venue) {
-    if (venue.indexOf("Fremont BART")) {
+    if (venue.indexOf("Fremont BART") >= 0) {
         console.log ('returning fremont');
         return "Fremont";
     }
