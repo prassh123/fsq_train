@@ -38,8 +38,6 @@ exports.getNextDeparturesByStopName = function(req, res) {
     console.log ('Stop Name' + JSON.stringify(stopName));	
     
     var stopCode = getStationCode(stopName);
-    
-
 	var xmlResp = '';
 	try {
     var urlstr = '/Transit2.0/GetNextDeparturesByStopName.aspx?token=1ebf976b-01bb-46d5-a8df-3978ee55d235&agencyName=BART&stopName=' + encodeURIComponent(stopName);

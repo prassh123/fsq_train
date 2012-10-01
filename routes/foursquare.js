@@ -34,34 +34,20 @@ exports.foursquarecallbackpush = function(req, res) {
     console.log ('Checkin location: ' + venue);
     console.log ('Checkin ID: ' + checkin_id);
 
-   // var orderItem = checkin.shout;
-   // console.log ('Ordered item: ' + orderItem);
-   
     var user = JSON.parse(req.body.user);
    
-   // var custPhoneNumber = user.contact.phone;
-   // console.log ('Client phone: ' + custPhoneNumber);
-
     var custEmail = user.contact.email;
     console.log ('Client email: ' + custEmail);
-
-    var orderDetails = "<h3>Venue: " + venue +  "Customer email" + custEmail ;
-    //orders.push({customer: {email: custEmail, phone: custPhoneNumber}, order: {item: orderItem, placed: new Date(), delivered: null}});
-    //sendsms_fn('+14083291685',custPhoneNumber,orderItem+" has been ordered!");
-
-
-
+   
     try {
       console.log ('using access token ' + fsq_access_token);
-      /*var post_data = querystring.stringify({
-          'text' : 'Hats Off from Prash!',
-      }); 
-       */
+
+      var stopName = getBestLocation(venue);
 
       var post_data = querystring.stringify(
           {
             "text":"Hi from Prash!",
-            "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/Concord" 
+            "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/" + stopName 
           }
       ); 
 
@@ -96,7 +82,12 @@ exports.foursquarecallbackpush = function(req, res) {
     } catch(err) {
         console.log(err);   
     }
-    //res.send ('Order via FourSquare Successful! ' + orderDetails);
     res.end();
 };
 
+getBestLocation = function(venue) {
+    if (venue.indexOf("Fremont-Bart")) {
+        console.log ('returning fremont');
+        return "Fremont";
+    }
+}
