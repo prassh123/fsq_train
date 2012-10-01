@@ -14,9 +14,14 @@
 	width: 5px;
 }
 
+.trn-chart thead {
+    background-color: darkseagreen;
+}
+
 .trn-chart tbody td {
-	font-size: 18px;
-	color: green;
+	font-size: 16px;
+	color: gray;
+	font-family: verdana;
 }
 
 .trn-chart tbody td.deptime {

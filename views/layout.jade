@@ -8,10 +8,7 @@ html(lang='en')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/css/common.css')
     link(rel='stylesheet', href="/bootstrap/css/bootstrap-responsive.css")
-  body
-    header.container
-      div.trn-app-header
-        h2 Header
+  body  
     div.container-fluid
       div.row-fluid
         div.span2
@@ -27,7 +24,8 @@ html(lang='en')
                       th Arriving in (mins)        
                   tbody 
                     each item in data
-                      tr 
+                      tr
+                      - if (item.depTimes.length>0) 
                         td #{item.name}
                         each depTime in item.depTimes     
                           td.deptime #{depTime}
