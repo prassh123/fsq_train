@@ -142,6 +142,12 @@ getBestLocation = function(venue) {
         console.log ('returning Downtown Berkeley');
         return "Downtown Berkeley";
     }
+
+    else if (venue.indexOf("West Dublin/Pleasanton BART") >= 0) {
+        console.log ('returning West Dublin/Pleasanton');
+        return "West Dublin/Pleasanton";
+    }
+    
     else if (venue.indexOf("Dublin/Pleasanton BART") >= 0) {
         console.log ('returning Dublin/Pleasanton');
         return "Dublin/Pleasanton";
@@ -257,10 +263,7 @@ getBestLocation = function(venue) {
         console.log ('returning Walnut Creek');
         return "Walnut Creek";
     }
-    else if (venue.indexOf("West Dublin/Pleasanton BART") >= 0) {
-        console.log ('returning West Dublin/Pleasanton');
-        return "West Dublin/Pleasanton";
-    }
+    
     else if (venue.indexOf("West Oakland BART") >= 0) {
         console.log ('returning West Oakland');
         return "West Oakland";
