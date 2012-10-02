@@ -4,26 +4,8 @@
 var http = require('http');
 var libxmljs = require("libxmljs");
 var url =  require('url');
-var redis = require("redis");
+
 var stopCodeMap = require('./utils');
-
-
-if (process.env.REDISTOGO_URL) {
-    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-    var redisClient = require("redis").createClient(rtg.port, rtg.hostname);
-    redisClient.auth(rtg.auth.split(":")[1]);
-} else {
-    var redisClient = redis.createClient();
-}
-
-
-redisClient.sadd("users", "user:prash");
-redisClient.hmset("user:prash", "name", "Prashanth");
-
-redisClient.hgetall("user:prash", function (err, obj) {
-    console.dir(obj.name);
-});
-
 
 exports.index = function(req, res){
   console.log ('in exports index');

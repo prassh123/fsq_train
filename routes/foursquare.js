@@ -2,7 +2,23 @@
 var querystring = require('querystring');
 var https = require('https');
 var fsq_access_token = '';
+var redis = require("redis");
 
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    var redisClient = require("redis").createClient(rtg.port, rtg.hostname);
+    redisClient.auth(rtg.auth.split(":")[1]);
+} else {
+    var redisClient = redis.createClient();
+}
+
+//redisClient.sadd("users", "user:prash");
+
+
+/*redisClient.hgetall("user:prash", function (err, obj) {
+    console.dir(obj.name);
+});
+*/
 exports.foursquareredirect = function (req, res) {
   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=DX3VVQM0L0YQ2OHTV1N5GNC5QTXCQFXDI0131W3WTIV02JVU&response_type=token&redirect_uri=https://rocky-eyrie-3850.herokuapp.com/foursquarecallback');
 };
@@ -10,6 +26,7 @@ exports.foursquareredirect = function (req, res) {
 
 exports.foursquarecallback = function (req, res) {
   console.log ('In foursquare callback');
+  console.log('fq request ' + req);
   //accessToken =  window.location.hash.substring(1); 
   //console.log ('access token ' + accessToken);
   //res.send ("Foursquare callback "  + accessToken );
@@ -22,6 +39,8 @@ exports.foursquareaccesstoken = function(req, res) {
     var params = req.param ('access_token', null);
     console.log ('came to foursquareaccesstoken with token ' );
     fsq_access_token = params;
+    // store the token in the redis store
+    //redisClient.hmset("user:prash", "name", "Prashanth");
     res.send ('foursquare token saved successfully ' + fsq_access_token);
 };
 
@@ -147,7 +166,7 @@ getBestLocation = function(venue) {
         console.log ('returning West Dublin/Pleasanton');
         return "West Dublin/Pleasanton";
     }
-    
+
     else if (venue.indexOf("Dublin/Pleasanton BART") >= 0) {
         console.log ('returning Dublin/Pleasanton');
         return "Dublin/Pleasanton";
