@@ -20,7 +20,7 @@ if (process.env.REDISTOGO_URL) {
 redisClient.sadd("users", "user:prash");
 redisClient.hmset("user:prash", "name", "Prashanth");
 
-redisClient.hgetall("hosts", function (err, obj) {
+redisClient.hgetall("user:prash", function (err, obj) {
     console.dir(obj);
 });
 
