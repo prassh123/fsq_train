@@ -26,7 +26,7 @@ exports.foursquareredirect = function (req, res) {
 
 exports.foursquarecallback = function (req, res) {
   console.log ('In foursquare callback');
-  console.log('fq request ' + req);
+  console.log('fq request ' + JSON.stringify(req));
   //accessToken =  window.location.hash.substring(1); 
   //console.log ('access token ' + accessToken);
   //res.send ("Foursquare callback "  + accessToken );
@@ -60,7 +60,6 @@ exports.foursquarecallbackpush = function(req, res) {
    
     try {
       console.log ('using access token ' + fsq_access_token);
-
       var stopName = getBestLocation(venue);
 
       var post_data = querystring.stringify(
