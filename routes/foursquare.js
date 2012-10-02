@@ -109,6 +109,7 @@ exports.foursquarecallbackpush = function(req, res) {
 
 getUserInfo = function(fsq_access_token) {
     var email_id = '';
+    var jsonResp = '';
     try {
     var urlstr = '/v2/users/self?oauth_token=' + fsq_access_token + '&v=20121001';
     var options = {
