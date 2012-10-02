@@ -21,7 +21,7 @@ redisClient.sadd("users", "user:prash");
 redisClient.hmset("user:prash", "name", "Prashanth");
 
 redisClient.hgetall("hosts", function (err, obj) {
-    console.dir("user:prash");
+    console.dir(obj);
 });
 
 
