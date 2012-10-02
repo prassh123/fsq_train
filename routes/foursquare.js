@@ -115,7 +115,10 @@ getUserInfo = function(fsq_access_token) {
     var options = {
       host: "api.foursquare.com",  
       path: urlstr,
-      method: 'GET'
+      method: 'GET',
+      headers:  {
+         'Content-Type': 'application/json'
+      }
     };
     console.log ('About to getUserInfo');
     https.request(options, function(res) {
