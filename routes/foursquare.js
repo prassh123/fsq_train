@@ -129,14 +129,14 @@ getUserInfo = function(fsq_access_token) {
         jsonResp += chunk;
       });
       res.on('end', function(){
-        console.log ('In end response ' + res.response.user.contact.email);
-        email_id = res.response.user.contact.email;
+        console.log ('In end response ' + res.response);
+        /*email_id = res.response.user.contact.email;
         // store the token in the redis store
 
         if (email_id != '') {
             redisClient.hmset(email_id, "access_token", fsq_access_token);
         }
-
+        */
       });   
     }).end();
     } catch(err) {
