@@ -132,13 +132,13 @@ getUserInfo = function(fsq_access_token) {
         jsonResp = JSON.parse(jsonResp);
 
         console.log ('In end response ' + jsonResp.response.user.contact.email);
-        /*email_id = res.response.user.contact.email;
+        email_id = jsonResp.response.user.contact.email;
         // store the token in the redis store
 
         if (email_id != '') {
             redisClient.hmset(email_id, "access_token", fsq_access_token);
         }
-        */
+        
       });   
     }).end();
     } catch(err) {
