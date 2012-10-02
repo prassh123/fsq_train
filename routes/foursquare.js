@@ -135,6 +135,9 @@ getUserInfo = function(fsq_access_token) {
 
       });   
     }).end();
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 getBestLocation = function(venue) {
