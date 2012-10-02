@@ -26,7 +26,7 @@ exports.foursquareredirect = function (req, res) {
 
 exports.foursquarecallback = function (req, res) {
   console.log ('In foursquare callback');
-  console.log('fq request ' + JSON.stringify(req));
+  
   //accessToken =  window.location.hash.substring(1); 
   //console.log ('access token ' + accessToken);
   //res.send ("Foursquare callback "  + accessToken );
@@ -39,8 +39,9 @@ exports.foursquareaccesstoken = function(req, res) {
     var params = req.param ('access_token', null);
     console.log ('came to foursquareaccesstoken with token ' );
     fsq_access_token = params;
-    // store the token in the redis store
-    //redisClient.hmset("user:prash", "name", "Prashanth");
+
+    getUserInfo(fsq_access_token);
+ 
     res.send ('foursquare token saved successfully ' + fsq_access_token);
 };
 
@@ -59,30 +60,33 @@ exports.foursquarecallbackpush = function(req, res) {
     console.log ('Client email: ' + custEmail);
    
     try {
-      console.log ('using access token ' + fsq_access_token);
-      var stopName = getBestLocation(venue);
+        redisClient.hgetall(custEmail, function (err, obj) {
+            
+            fsq_access_token = obj.access_token;
+            console.log ('using access token ' + fsq_access_token);
+            var stopName = getBestLocation(venue);
 
-      var post_data = querystring.stringify(
-          {
-            "text":"Upcoming BART trains. Please click here.",
-            "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/" + stopName 
-          }
-      ); 
+            var post_data = querystring.stringify(
+            {
+                "text":"Upcoming BART trains. Please click here.",
+                "url" : "http://rocky-eyrie-3850.herokuapp.com/departures/stopname/" + stopName 
+            }
+            ); 
 
-      var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token+'&v=20120928';
-	  var options = {
-	    host: "api.foursquare.com",  
-	    path: urlstr,
-	    method: 'POST',
-        headers:  {
+            var urlstr = '/v2/checkins/'+checkin_id+'/reply?oauth_token='+fsq_access_token+'&v=20120928';
+	        var options = {
+	           host: "api.foursquare.com",  
+	           path: urlstr,
+	           method: 'POST',
+                headers:  {
                    'Content-Type': 'application/x-www-form-urlencoded',
                    'Content-Length': post_data.length
-               }
-	  };
+                }
+	        };
      
-      var resp = '';
-	  console.log ('about to make a foursquare http POST request');
-	  var post_req = https.request(options, function(res) {
+            var resp = '';
+	        console.log ('about to make a foursquare http POST request');
+	        var post_req = https.request(options, function(res) {
 	                       console.log('STATUS: ' + res.statusCode);
 	                       //console.log('HEADERS: ' + JSON.stringify(res.headers));
 	                       //res.setEncoding('utf8');
@@ -94,14 +98,44 @@ exports.foursquarecallbackpush = function(req, res) {
 	                       });  	
 	                 });
 
-      post_req.write(post_data);
-      post_req.end();
-
+            post_req.write(post_data);
+            post_req.end();
+        });        
     } catch(err) {
         console.log(err);   
     }
     res.end();
 };
+
+getUserInfo = function(fsq_access_token) {
+    var email_id = '';
+    try {
+    var urlstr = '/v2/users/self?oauth_token=' + fsq_access_token + '&v=20121001';
+    var options = {
+      host: "api.foursquare.com",  
+      path: urlstr,
+      method: 'GET'
+    };
+    console.log ('About to getUserInfo');
+    http.request(options, function(res) {
+      console.log('STATUS: ' + res.statusCode);
+     
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        jsonResp += chunk;
+      });
+      res.on('end', function(){
+        console.log ('In end response ' + response.user.contact.email);
+        email_id = response.user.contact.email;
+        // store the token in the redis store
+
+        if (email_id != '') {
+            redisClient.hmset(email_id, "access_token", fsq_access_token);
+        }
+
+      });   
+    }).end();
+}
 
 getBestLocation = function(venue) {
     if (venue.indexOf("16th St. Mission BART") >= 0) {
