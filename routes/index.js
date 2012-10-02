@@ -17,10 +17,10 @@ if (process.env.REDISTOGO_URL) {
 }
 
 
-client.sadd("users", "user:prash");
-client.hmset("user:prash", "name", "Prashanth");
+redisClient.sadd("users", "user:prash");
+redisClient.hmset("user:prash", "name", "Prashanth");
 
-client.hgetall("hosts", function (err, obj) {
+redisClient.hgetall("hosts", function (err, obj) {
     console.dir("user:prash");
 });
 
