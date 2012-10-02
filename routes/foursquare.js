@@ -131,7 +131,7 @@ getUserInfo = function(fsq_access_token) {
       res.on('end', function(){
         jsonResp = JSON.parse(jsonResp);
 
-        console.log ('In end response ' + jsonResp.response);
+        console.log ('In end response ' + jsonResp.response.user.contact.email);
         /*email_id = res.response.user.contact.email;
         // store the token in the redis store
 
