@@ -117,7 +117,7 @@ getUserInfo = function(fsq_access_token) {
       method: 'GET'
     };
     console.log ('About to getUserInfo');
-    http.request(options, function(res) {
+    https.request(options, function(res) {
       console.log('STATUS: ' + res.statusCode);
      
       res.setEncoding('utf8');
